@@ -1,4 +1,4 @@
-FROM ibuildthecloud/ubuntu-core:13.10
+FROM ibuildthecloud/ubuntu-core:12.04.3
 RUN dpkg-divert --local --rename --add /sbin/initctl
 RUN ln -s /bin/true /sbin/initctl
 RUN echo '#!/bin/sh\nexit 101' > /usr/sbin/policy-rc.d
