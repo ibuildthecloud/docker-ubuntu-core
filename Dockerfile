@@ -6,5 +6,7 @@ RUN chmod +x /usr/sbin/policy-rc.d
 RUN echo 'force-unsafe-io' > /etc/dpkg/dpkg.cfg.d/02apt-speedup
 RUN echo 'DPkg::Post-Invoke {"/bin/rm -f /var/cache/apt/archives/*.deb || true";};' > /etc/apt/apt.conf.d/no-cache
 RUN sed -i 's/main restricted/main universe restricted/g' /etc/apt/sources.list
-RUN apt-get update -y
-RUN apt-get upgrade -y
+RUN apt-get update -y && \
+    apt-get upgrade -y && \
+    rm -rf /var/lib/apt/lists && \
+    rm -rf /var/cache/apt/*.bin
